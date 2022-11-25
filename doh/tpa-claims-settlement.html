@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+	<title>Nextcare Data Intelligence</title>
+	<link rel="stylesheet" href="../css/styles.css">
+</head>
+</body>
+<div class="main-body">
+	<nav id="navbar">
+		<div class="vrn">
+			<a href="../index.html"><b>Home</b></a>
+			<a href="endorsements.html">
+				<sub>TPA Claims Settlement<br>Documentation Version 1.0</sub>
+			</a>
+		</div>
+		<header>
+			Documentation
+		</header>
+		<ul>
+			<li><a class="nav-link" href="#overview">Overview</a></li>
+			<li><a class="nav-link" href="#source">Source Data</a></li>
+			<li><a class="nav-link" href="#scope">Report Scope</a></li>
+			<li><a class="nav-link" href="#deadline">Submission Deadline</a></li>
+			<li><a class="nav-link" href="#notes">Important Notes</a></li>
+			<li><a class="nav-link" href="#steps">Reporting Procedure</a></li>
+		</ul>
+	</nav>
+
+	<main id="main-doc">
+		<section class="main-section" id="overview">
+			<div class="space"></div>
+			<div class="space"></div>
+			<h2>Overview</h2>
+			<article>
+				<h3>TPA Claims Settlement</h3>
+				<p>
+					The Department of Health's TPA Claims Settlement report consist of the count and amount 
+					of claims processed, ready for settlement, and settled by insurers through Nextcare. 
+					The report is required by the Health Regulator of Abu Dhabi to ensure that insurance companies 
+					are paying the healthcare providers for medical services rendered. It also includes 
+					account receivable and accounts payable aging as per the books of accounts.
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="source">
+			<div class="space"></div>
+			<h2>Source Data</h2>
+			<article>
+				<h3>Source Data</h3>
+				<p>
+					The main source of data is QlikSense BI, from the Nextcare Claims Dashboard. 
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="scope">
+			<div class="space"></div>
+			<h2>Scope</h2>
+			<article>
+				<h3>Report Scope</h3>
+				<p>
+					The date scope of the report are Direct Billing claims processed within the previous month, based on PO Validation Date.
+					<br><br>
+					Claims included are those under the HAAD Licensing Authority.
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="deadline">
+			<div class="space"></div>
+			<h2>Submission Deadline</h2>
+			<article>
+				<h3>Deadline of Submission</h3>
+				<p>
+					Department of Health requires the report to be uploaded to the 
+					<a href="https://bpmweb.doh.gov.ae/UserManagement/MainPage.html" target="_blank">DOH Portal</a>  
+					seven working days every after last day of the month.
+					<br><br>
+					Example: If the month ends on Monday, and UAE working days is Mondays through Fridays, 
+					and then the seventh day after the last working month will be Wednesday the following week.
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="notes">
+			<div class="space"></div>
+			<h2>Reminders</h2>
+			<article>
+				<h3>Important Notes</h3>
+				<p>
+					<ul>
+						<li>Make sure not to lock out the account by entering incorrect username and/or password. 
+							The credentials are linked to other Nextcare system, such as Greenrain. </li>
+						<li>This is a regulatory requirement so make sure not to miss. 
+							Nextcare Compliance receives an email notification from Department of Health 
+							once this report has not been submitted after the deadline.</li>
+					</ul>
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="steps">
+			<div class="space"></div>
+			<h2>Steps</h2>
+			<article>
+				<h3>Reporting Procedure</h3>
+				<p>
+					<ol>
+					<li>Download and save the data</li> 
+						<ul>
+							<li>
+								<b>FROM: </b>Qlik BI > Nextcare Claims Dashboard > 
+								Bookmarks = <a href="https://bi.tatsh.com/sense/app/8837437b-e471-46d5-8f61-517f900258f2/sheet/cfdc7521-b9c6-4775-89c2-32a77991ac56/state/analysis/bookmark/c77738f3-e79d-4fbd-8f34-a9c2b17b4ce8" 
+								target="_blank">DOH TPA Claims Settlement</a>.</li>
+							<li>
+								<b>TO: </b>\\ncu-tqa-019\DATA\james\__recurring-reports\haad-data-upload\HAAD UPLOAD YEAR 2022
+								<br>
+								Note: Create a new folder for the month, or if it's a new year, go one folder up (parent folder) 
+								and create a new HAAD UPLOAD YEAR 20XX
+							</li>
+						</ul>
+					<li>Filter the Provider PO Validation Month-Year. This is the only filter that you are required to change. 
+						<br> 
+						The default criteria and filters used are: </li>
+						<ul>
+							<li>Licensing Authority = <b>HAAD</b></li>
+							<li>ASOAP Type = <b>Direct</b></li>
+							<li>Batch Reception Year <> <i><b>Null</b></i></li>
+							<li>PO Delivery Date <> <i><b>Null</b></i></li>
+						</ul>
+					<li>Go to Department of Health's <a href="https://bpmweb.doh.gov.ae/UserManagement/MainPage.html" 
+						target="_blank">homepage</a>.</li>
+					<li>Click <b>Login to DOH</b></li>
+					<li>Login using Nextcare credentials</li>
+						<ul>
+							<li>Username = Nextcare</li>
+							<li>Password = to be provided by <a href="mailto:Helen.Kay@nextcarehealth.com">Helen Kay</a><br>
+						</ul>
+					<li>After logging in, go to: e-Insurance > TPA Forms</li>
+						<ul>
+							<li>
+								If in case Finance team already uploaded their data, you will receive an error message = 
+								"Data already exists for this month!!!". If you encounter this error, go to (A); else, go to (B).
+							</li>
+							<ul>
+								<li>
+									A) Go to e-Insurance > TPA Forms, and then select the latest report saved as draft.
+								</li>
+								<li>
+									B) Add the payers one-by-one by selecting the name of the payer 
+									in the dropdown menu and then clicking 'Add Insurer'.
+								</li>
+							</ul>
+						</ul>
+					<li>For each payer, click the gear icon to add the figures in the form.</li>
+					<li>Once data is entered for a payer, click the upload icon to to saved the data.</li>
+					<li>Once all data have been added, validate the figures by making sure that the totals from Qlik Sense and in the DOH Portal that you have just added are matching. </li>
+					<li>
+						Once confirmed that the totals matched, go to the bottom of the page and click Submit. 
+						<br> 
+						<b>Note: Never submit the report without data in Table 3 to 7, which are being completed by Finance department.</b>
+					</li>
+					</ol>
+				</p>
+			</article>
+		</section>
+
+	</section>
+	<br>
+	<div class="multiple-spaces"></div>
+	</section>
+	<div class="footer">
+	&copy; Copyright 2022 Data Intelligence - Operations Support
+	
+	</main>
+</div>
+</body>
+
+</html>

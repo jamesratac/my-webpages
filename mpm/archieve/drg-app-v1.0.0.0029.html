@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+</html>
+<head>
+	<title>Nextcare Data Intelligence</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+</body>
+<div class="main-body">
+	<nav id="navbar">
+		<!---<a href="M:\James - Ops Support\webpages\index.html">Data Intelligence Home</a> --->
+		<h1>
+			DRG App
+			Production Release Version 1.0.0.0029
+		</h1>
+		<header>
+			<b>User Manual</b>
+		</header>
+		<ul>
+			<li><a class="nav-link" href="#about">About DRG App</a></li>
+			<li><a class="nav-link" href="#download">Download</a></li>
+			<li><a class="nav-link" href="#setup">Set Up</a></li>
+			<li><a class="nav-link" href="#prep">Prepare</a></li>
+			<li><a class="nav-link" href="#run">Run the App</a></li>
+			<li><a class="nav-link" href="#output">App Output</a></li>
+			<li><a class="nav-link" href="#hist">App Versions</a></li>
+			<li><a class="nav-link" href="#annex">Annexure</a></li>
+		</ul>
+	</nav>
+
+	<main id="main-doc">
+		<section class="main-section" id="about">
+			<div class="space"></div>
+			<img src="M:\James - Ops Support\webpages\DRG app\img\launch.png">
+			<div class="space"></div>
+			<h2>About</h2>
+			<article>
+				<h3>Get Started with the DRG App</h3>
+				<p> Welcome to the DRG App User Guide!</p>
+				<p>
+					Within this manual, we will show you how to run the DRG app,
+					which can calculate Adjusted Base Prices, and New Multiplying Factor
+					that are in line with the Year 2 Full Implementation of Diagnosis Related Group (DRG)
+					in Dubai, United Arab Emirates.
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="download">
+			<div class="space"></div>
+			<h2>Download</h2>
+			<article>
+				<h3>Downloading the DRG App</h3>
+				<p>
+					First, you need to download the application program
+					along with its components
+					<a download
+						href="\\172.29.12.142\M Drive\James - Ops Support\webpages\DRG app\download\DRG_app_202202171723.rar"
+						target='_blank' style='color:rgb(87,125,190)'>
+						here.</a>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="setup">
+			<div class="space"></div>
+			<h2>Set Up</h2>
+			<article>
+				<h3>Extract File to Your Desktop Computer</h3>
+				<p>
+					Once downloaded, next step is to extract the file in your Desktop Computer. <br>
+				<blockquote>
+					<b>
+						Note: The extracted file should be located
+						in your Desktop Computer for the application to run properly.
+					</b>
+				</blockquote>
+				<br>
+				Your DRG app folder will look like this: <br>
+				<img src="M:\James - Ops Support\webpages\DRG app\img\folder-structure.png">
+				</p>
+			</article>
+		</section>
+
+		<!--- <br> --->
+		<section class="main-section" id="prep">
+			<div class="space"></div>
+			<h2>Prepare</h2>
+			<article>
+				<h3>Required Files</h3>
+				<p>
+					Now, before you run the DRG app, you need to prepare the following Microsoft Excel files:
+				<ul>1. Provider Claim Items Data</ul>
+				<ul>2. Provider&#39s Agreed Tariff</ul>
+				<ul>3. Provider Exclusion (if there is any)</ul>
+				<br>
+				Provider Claim Items data are being extracted from QlikSense BI. <br>
+				<br>
+				For Provider&#39s Agreed Tariff and Provider Exlusion worksheets,
+				templates are provided, which can be accessed inside your DRG app folder under folders
+				<span
+					style='font-family: Lucida Console; font-size: 0.85em; background-color: lightgray;'>[020_agreedTariff]</span>
+				and
+				<span
+					style='font-family: Lucida Console; font-size: 0.85em; background-color: lightgray;'>[030_provExcl]</span>.
+				<div class="space"></div>
+				You need to have the data ready the same as the templates, else you might encounter an error when you
+				run the app. <br>
+				<br>
+				You may refer to <a href="#annex" style='color:rgb(87,125,190)'>Annex A</a> to see the required fields
+				for each of these files.
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="run">
+			<div class="space"></div>
+			<h2>Run the App</h2>
+			<article>
+				<h3>Step-by-Step Guide for Running the App</h3>
+				<p>
+				<blockquote>
+					<b>INPUT Tab</b> <br><br>
+					<b>Step 1.</b> In the DRG app's INPUT tab, select a Provider Claim Items File in .xlsx format.
+					<br><br>
+					<b>Step 2.</b> Choose the Provider&#39s Agreed Tariff. <br>
+					<blockquote>Note: Make sure to save the Provider Price List in the
+						<span
+							style='font-family: Lucida Console; font-size: 0.85em; background-color: lightgray;'>[020_agreedTariff]
+						</span>
+						folder prior to running the app.
+					</blockquote>
+					<b>Step 3.</b> Select one or more Member Network/s from the list box selection. <br><br>
+					<br>
+					<b>EXCLUSION Tab</b><br><br>
+					<b>Step 4.</b> In the DRG app's EXCLUSION tab, you can optionally include/exclude SAADA. <br>
+					<blockquote>SAADA, by default, is excluded in the calculation. Tick the box if you want to include
+						SAADA.</blockquote>
+					<b>Step 5.</b> There is an option to exclude Payers, Policies, Service Items, and/or Invoice
+					Numbers.
+					<blockquote>Just enter the list of items you want to exclude in the ProvExcl.xlsx file. Link of the
+						file provided in the textbox.</blockquote>
+					<br>
+					<b>OUTPUT Tab</b><br><br>
+					<b>Step 6.</b> In the DRG app's OUTPUT tab, enter the Output Filename. <br>
+					<blockquote>App's output are saved into the
+						<span
+							style='font-family: Lucida Console; font-size: 0.85em; background-color: lightgray;'>[050_appOutput]</span>
+						folder by default.
+					</blockquote>
+					<b>Step 7.</b> Click Finish.
+				</blockquote>
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="output">
+			<div class="space"></div>
+			<h2>App Output</h2>
+			<article>
+				<h3>Report Output Format</h3>
+				<p>
+				<blockquote>
+					<b>01_Summary</b> &#8211 includes Adjusted Base Rate and Multiplying Factor, with and without
+					High-Cost calculations <br><br>
+					<b>02_IPCases</b> &#8211 details of in-patient claims with corresponding add on and inlier payments
+					<br><br>
+					<b>03_DaycareCases</b> &#8211 details of daycare claims with corresponding inlier payments <br><br>
+					<b>04_IPRejectedInvoices</b> &#8211 lists all rejected IP claims <br><br>
+					<b>05_DaycareRejectedInvoices</b> &#8211 lists all rejected IP claims
+				</blockquote>
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="hist">
+			<div class="space"></div>
+			<h2>App Versions</h2>
+			<article>
+				<h3>Version History</h3>
+				<table class="styled-table">
+					<tr>
+						<th>Version</th>
+						<th>Author</th>
+						<th>Comment</th>
+						<th>Date</th>
+					</tr>
+
+					<tr>
+						<td>Beta v1.0.0.0019</td>
+						<td>Admin</td>
+						<td>Initial Release</td>
+						<td>07-Feb-2022</td>
+					</tr>
+					<tr>
+						<td>Prod v1.0.0.0029</td>
+						<td>Admin</td>
+						<td>Output folder options removed</td>
+						<td>17-Feb-2022</td>
+					</tr>
+					<td>Prod v1.0.0.0029</td>
+					<td>Admin</td>
+					<td>User activity log added</td>
+					<td>17-Feb-2022</td>
+					</tr>
+					<td>Prod v1.0.0.0029</td>
+					<td>Admin</td>
+					<td>'No High-Cost' scenarios added in the workflow</td>
+					<td>17-Feb-2022</td>
+					</tr>
+					<td>Prod v1.0.0.0029</td>
+					<td>Admin</td>
+					<td>Staff pricing added in the agreed tariff dropdown</td>
+					<td>17-Feb-2022</td>
+					</tr>
+					<td>Prod v1.0.0.0029</td>
+					<td>Admin</td>
+					<td>Daycare case count corrected as per invoice, not per item code</td>
+					<td>17-Feb-2022</td>
+					</tr>
+				</table>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="annex">
+			<div class="space"></div>
+			<h2>Annex A</h2>
+			<article>
+				<h3>Required Fields for the Required Files</h3>
+				<p>
+					<b>Provider Claim Items Data</b>
+					<li>HealthCare Provider Name</li>
+					<li>INVOICENBR</li>
+					<li>ServiceName</li>
+					<li>Service Item Name</li>
+					<li>Service Item External Ref</li>
+					<li>Covered Payer Share (AED)</li>
+					<li>Covered Beneficiary Share (AED)</li>
+					<li>Payer Name</li>
+					<li>Master Contract Name</li>
+					<li>Network Type</li>
+					<li>Claims Status</li>
+					<br><br>
+					<b>Provider&#39s Agreed Tariff</b>
+					<li>HealthCare Provider Name</li>
+					<li>CPT</li>
+					<li>Agreed Tariff</li>
+					<br><br>
+					<b>Provider Exclusion (Optional)</b>
+					<li>Payer Name worksheet</li>
+				<ul>
+					<li list-style-type: circle>HealthCare Provider Name</li>
+					<li>Payer Name</li>
+				</ul>
+				<li>Master Contract Name worksheet</li>
+				<ul>
+					<li>HealthCare Provider Name</li>
+					<li>Master Contract Name</li>
+				</ul>
+				<li>Service Items Name worksheet</li>
+				<ul>
+					<li>HealthCare Provider Name</li>
+					<li>Service Items Name</li>
+				</ul>
+				<li>INVOICENBR worksheet</li>
+				<ul>
+					<li>HealthCare Provider Name</li>
+					<li>INVOICENBR</li>
+				</ul>
+				</p>
+			</article>
+		</section>
+		<br>
+	</main>
+</div>
+</body>
+
+</html>

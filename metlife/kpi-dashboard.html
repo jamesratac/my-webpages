@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+	<title>Nextcare Data Intelligence</title>
+	<link rel="stylesheet" href="../css/styles.css">
+</head>
+</body>
+<div class="main-body">
+	<nav id="navbar">
+		<div class="vrn">
+			<a href="../index.html"><b>Home</b></a>
+			<a href="kpi-dashboard.html">
+				<sub>KPI Dashboard<br>Documentation Version 0.1</sub>
+			</a>
+		</div>
+		<header>
+			Documentation
+		</header>
+		<ul>
+			<li><a class="nav-link" href="#overview">Overview</a></li>
+			<li><a class="nav-link" href="#source">Source Data</a></li>
+			<li><a class="nav-link" href="#design">Report Design and Components</a></li>
+		</ul>
+	</nav>
+
+	<main id="main-doc">
+		<section class="main-section" id="overview">
+			<div class="space"></div>
+			<div class="space"></div>
+			<h2>Overview</h2>
+			<article>
+				<h3>MetLife KPI Dashboard Overview</h3>
+					<p>
+						MetLife KPI Dashboard is a workbook that contains month-to-date status of MetLife claims.
+						It includes information such as count and amount of claims, percentage of rejection, claims' turnaround time, and claims' age. 
+						It also contains information about the reporting month's Top X by count and amount, such as top policies, top diagnoses, 
+						top healthcare providers, and the list of In-Patient claims that is more than AED 30k.
+					</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="source">
+			<div class="space"></div>
+			<h2>Source Data</h2>
+			<article>
+				<h3>Source Data</h3>
+					<p>
+						Data in the dashboard are extracted from TATSH Web using the following criteria:
+						<ul>
+							<li>Service Provider: <b>NEXTCARE Claims Management LLC</b></li>
+							<li>From Claim Date: <b><i>Last year's first date of the year</i></b></li>
+							<li>To Claim Date: <b><i>Current year's last date of the year</i></b></li>
+							<li>Include BC Claims: <b>Yes</b></li>
+							<li>Declined: <b>No</b></li>
+							<li>Not Used Claims: <b>No</b></li>
+							<li>Payer: <b>MetLife</b></li>
+							<li>UWYear: <b>0</b></li>
+						</ul>
+					</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="design">
+			<div class="space"></div>
+			<h2>Report Design</h2>
+			<article>
+				<h3>Report Design and Components</h3>
+					<p>
+						MetLife KPI Dashboard is made up of four worksheets: ADMISSION, RECEIVED, UTILIZATION, and AGEING.
+						Below are the information you can view from each worksheet:
+						
+						<ul>
+							<li><b>ADMISSION worksheet:</b> 
+								Contains the total number of claims grouped by Claims Admission Date, and drilled down by (1) ASOAP Type: 
+								Direct Billing or Reimbursement; and (2) Family of Cause: In-Patient or Out-Patient. 
+								These two classifications are segragated by the claims status: Authorized, Initial, Processed, and Settled.</li>
+							<li><b>RECEIVED worksheet:</b> Contains the total number of claims grouped by Claims Reception Date.
+								This sheet also has two additional tables compared to Admission worksheet - the Claims Turnaround Time for: (a) Direct Billing and (b) Reimbursement Claims.</li>
+							<li><b>UTILIZATION worksheet:</b> Shows the previous completed month's claims utilization. 
+								It features policies with highest to lowest count of claims for last month, 
+								the Top 10 Diagnoses and the Top 10 Healthcare Providers by claim count.
+								You will also find here a list (if applicable) of claims amounting and AED 30,0000 and above.</li>
+							<li><b>AGEING worksheet:</b> Displays information about claims cycle based on the date of service / admission and reception of claims. 
+								Below are the tables you can find in this tab: </li>
+								<ul>
+									<li><i>Based on Claim's Admission Date</i></li>
+										<ul>
+											<li><b>Incurred to Reported</b>: Claim's age from <i>admission date</i> to <b>reception date</b>.</li>
+											<li><b>Incurred to Paid</b>: Claim's age from <i>admission date</i> to <b>settlement date</b>.</li>
+											<li><b>Incurred to PO</b>: Claim's age from <i>admission date</i> to <b>payment order validation date</b>.</li>
+										</ul>
+									<li><i>Based on claim's reception Date</i></li>
+										<ul>
+											<li><b>Received to PO</b>: Claim's age from <i>reception date</i> to <b>payment order validation date</b>.</li>
+											<li><b>Received to Paid</b>: Claim's age from <i>reception date</i> to <b>settlement date</b>.</li>
+										</ul>
+								</ul>
+						</ul>
+					</p>
+			</article>
+		</section>
+
+		<div class="multiple-spaces"></div>
+		<div class="footer">
+			Copyright &copy; 2022 Data Intelligence - Operations Support
+		</div>		
+
+	</main>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+    <title>Nextcare Data Intelligence</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+</body>
+<div class="main-body">
+    <nav id="navbar">
+        <div class="vrn">
+            <a href="../index.html"><b>Home</b></a>
+            <a href="ops-per-payer.html">
+                <sub>Ops per Payer Finance Report<br>Report Version 2.0 <i>Draft</i> </sub>
+            </a>
+        </div>
+        <header>
+            Documentation
+        </header>
+        <ul>
+            <li><a class="nav-link" href="#about">About</a></li>
+            <li><a class="nav-link" href="#design">Report Design</a></li>
+            <li><a class="nav-link" href="#source">Source Data</a></li>
+            <li><a class="nav-link" href="#pc-m">Pre-Certifications: Manual</a></li>
+            <li><a class="nav-link" href="#pc-a">Pre-Certifications: Automated</a></li>
+            <li><a class="nav-link" href="#db">Claims: Direct Billing</a></li>
+            <li><a class="nav-link" href="#ri">Claims: Reimbursement</a></li>
+            <li><a class="nav-link" href="#as">After Sales: Endorsements</a></li>
+            <li><a class="nav-link" href="#cc">Care Center: Answered Calls</a></li>
+            <li><a class="nav-link" href="#alteryx">Running the Reporting App</a></li>
+            <li><a class="nav-link" href="#reporting">Reporting</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-doc">
+        <section class="main-section" id="about">
+            <br><br>
+            <h2>About</h2>
+            <article>
+                <h3>Operations per Payer Finance Report</h3>
+                <p>
+                    The Operations per Payer Finance Report contains the count of claims and transactions handled by Nextcare Claims Management LLC, segragated per Insurer and per Business Unit. Numbers are reported as cumulative total, from January 1st until the last day
+                    of the reporting month.
+                </p>
+            </article>
+        </section>
+
+        <section class="main-section" id="design">
+            <br><br>
+            <h2>Report Design</h2>
+            <article>
+                <h3>Report Design and Components</h3>
+                <p>
+                    As of November 2021, the report output is in Microsoft Excel format and has five worksheets, namely:
+                    <ul>
+                        <li>Manual Pre-Certifications</li>
+                        <li>Automated Pre-Certifications</li>
+                        <li>Direct Billing Claims</li>
+                        <li>Reimbursement Claims</li>
+                        <li>Care Center Inbound Calls</li>
+                    </ul>
+                    Two more worksheets are added in May 2022, and the revision was applied to 2021 reports. These are:
+                    <ul>
+                        <li>After Sales Endorsements</li>
+                        <li>MCC Retrospective Medical Review</li>
+                    </ul>
+                    <br> The report consists of columns such as Payer Name, Payer Country, Payer Key and ID, and the corresponding figures per worksheet.
+                </p>
+            </article>
+        </section>
+
+        <section class="main-section" id="source">
+            <br>
+            <!-- <br> -->
+            <h2>Source Data</h2>
+            <article>
+                <h3>Source Data per Department</h3>
+                <br>
+                <table class="styled-table">
+                    <tr>
+                        <th>Department</th>
+                        <th>Source Data</th>
+                    </tr>
+                    <tr>
+                        <td>Pre-Certifications, Manual</td>
+                        <td>Qlik Sense BI: Pre-Certs Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-Certifications, Automated</td>
+                        <td>Qlik Sense BI: Nextcare Turn Around Time (OPS_TAT) Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>Claims, Direct Billing</td>
+                        <td>Qlik Sense BI: Nextcare Claims Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>Claims, Reimbursement</td>
+                        <td>TATSH Web: ASOAP Plans Report <br> <sub>Note: Extraction is done through TATSH Web because Qlik Sense BI does not have Created by User field.</sub> </td>
+                    </tr>
+                    <tr>
+                        <td>Answered Calls, Care Center</td>
+                        <td>
+                            RD Web Access: TATSH Back Office 
+                            <br>Intra BU Reporting (source: Care Cetre)
+                            <br>Member Calls: UAE + Gulf Region (source: Care Cetre)
+                            <br>Care Center Agents Database Export (source: Care Cetre)
+                        </td>
+                    </tr>
+                </table>
+            </article>
+        </section>
+
+        <section class="main-section" id="pc-m">
+            <br><br>
+            <h2>Manual Pre-Certifications</h2>
+            <article>
+                <h3>Calculation Logic: Manual Pre-Certifications</h3>
+                <blockquote>
+                    <p>
+                        Count of Manual Pre-Certifications is based on the business unit of the Pre-Certs Last User in Qlik Sense BI.
+                    </p>
+                    <h4>Grouped Family of Benefits</h4>
+                    <table class="styled-table">
+                        <tr>
+                            <th>Family of Benefits (FOB)</th>
+                            <th>Grouped FOB</th>
+                        </tr>
+                        <tr>
+                            <td>In-Patient</td>
+                            <td>IP</td>
+                        </tr>
+                        <tr>
+                            <td>Out-Patient</td>
+                            <td>OP</td>
+                        </tr>
+                        <tr>
+                            <td>Dental</td>
+                            <td>OP</td>
+                        </tr>
+                        <tr>
+                            <td>Optical</td>
+                            <td>OP</td>
+                        </tr>
+                    </table>
+
+                    <h4>List of Users</h4>
+                    <p>
+                        List of historical users per business unit, updated everytime there's a new hire.
+                    </p>
+                    <table class="styled-table">
+                        <tr>
+                            <th>Username</th>
+                            <th>BU</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <!-- Bahrain Users List -->
+                        <tr>
+                            <td>Mustafa Alghasra</td>
+                            <td>BAH</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Anwar Alhadhoori</td>
+                            <td>BAH</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Hasan Salman</td>
+                            <td>BAH</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Zahraa Makki</td>
+                            <td>BAH</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Zaid Hussain</td>
+                            <td>BAH</td>
+                            <td> </td>
+                        </tr>
+                        <!-- Qatar Users List -->
+                        <tr>
+                            <td>Faten El Sharkawy</td>
+                            <td>QAT</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Gurpreet Khera</td>
+                            <td>QAT</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Jonard.Gutierrez</td>
+                            <td>QAT</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Rana Mohsen</td>
+                            <td>QAT</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Beenish Ali</td>
+                            <td>QAT</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Sana Babar</td>
+                            <td>QAT</td>
+                            <td>Added January 2022 reporting</td>
+                        </tr>
+                        <!-- Egypt Users List -->
+                        <tr>
+                            <td>Abdelrahman Elyamany</td>
+                            <td>EGP</td>
+                            <td>Added May 2022 reporting</td>
+                        </tr>
+                        <!-- Kuwait Users List -->
+                        <tr>
+                            <td>Rajesh Prabakaran</td>
+                            <td>KWT</td>
+                            <td>Added May 2022 reporting</td>
+                        </tr>
+                        <!-- UAE Users List -->
+                        <tr>
+                            <td>All Other Users</td>
+                            <td>UAE</td>
+                            <td> </td>
+                        </tr>
+                    </table>
+                </blockquote>
+            </article>
+        </section>
+
+        <section class="main-section" id="pc-a">
+            <br><br>
+            <h2>Automated Pre-Certifications</h2>
+            <article>
+                <h3>Calculation Logic: Automated Pre-Certifications</h3>
+                <blockquote>
+                    <p>
+                        Automated Pre-Certs are accounted to PBM Control and is counted towards UAE Business Unit.
+                    </p>
+                </blockquote>
+            </article>
+        </section>
+
+        <section class="main-section" id="db">
+            <br><br>
+            <h2>Direct Billing</h2>
+            <article>
+                <h3>Calculation Logic: Direct Billing Claims</h3>
+                <blockquote>
+                    <h4>Process Flow</h4>
+                    <p>
+                        <img src="img/db-logic.png">
+                    </p>
+                    <h4>Glossary</h4>
+                    <table class="styled-table">
+                        <tr>
+                            <th>Batch Label contains</th>
+                            <th>Mode of Submission</th>
+                            <th>Claims Processing Type</th>
+                        </tr>
+                        <tr>
+                            <td>CONS</td>
+                            <td>eClaim</td>
+                            <td>Auto-Processed Non-Pharmacy Claims</td>
+                        </tr>
+                        <tr>
+                            <td>PBM</td>
+                            <td>eClaim</td>
+                            <td>Auto-Processed Pharmacy Claims</td>
+                        </tr>
+                        <tr>
+                            <td>NONPBM</td>
+                            <td>eClaim</td>
+                            <td>Manually-Altered Pharmacy Claims</td>
+                        </tr>
+                        <tr>
+                            <td>Does NOT contain words such as <br> CONS, PBM, nor NONPBM</td>
+                            <td>eClaim</td>
+                            <td>Manually Processed, All Other Claims</td>
+                        </tr>
+                    </table>
+                    <br><br>
+
+                    <h4>Notes</h4>
+                    <p>
+                        <ul>
+                            <li>The list of DHA facilities is provided by Claims Management Department.</li>
+                            <li>Processing User Business Unit are historical users, and updated when there is a new hire.</li>
+                            <li>
+                                Processing User Database is saved to the following folder:
+                                <span>\\172.29.12.142\M Drive\OPS PER PAYER FINANCE REPORT\_REFTBL_</span>.
+                            </li>
+                        </ul>
+                    </p>
+            </article>
+        </section>
+
+        <section class="main-section" id="ri">
+            <br><br>
+            <h2>Reimbursement</h2>
+            <article>
+                <h3>Calculation Logic: Reimbursement Claims</h3>
+                <blockquote>
+                    <img src="img/ri-logic.png">
+                    <h4>Glossary</h4>
+                    <table class="styled-table">
+                        <tr>
+                            <th>Payer BU</th>
+                            <td>Insurer&#39;s Country of Origin</td>
+                        </tr>
+                        <tr>
+                            <th>Pre-Certs User BU</th>
+                            <td>Business Unit where Pre-Certs user is located</td>
+                        </tr>
+                        <tr>
+                            <th>Processing User BU</th>
+                            <td>The same with Pre-Certs User BU, the only addition is the names of UAE managers and supervisors</td>
+                        </tr>
+                        <tr>
+                            <th>Created by User BU</th>
+                            <td>The same with Pre-Certs User BU</td>
+                        </tr>
+                    </table>
+
+                    <h4>Insurers and its corresponding Business Unit</h4>
+                    <table class="styled-table">
+                        <tr>
+                            <th>Insurer</th>
+                            <th>Payer BU</th>
+                        </tr>
+                        <!-- Qatar Payers List -->
+                        <tr>
+                            <td>Qatar General Insurance and Reinsurance Co - Qatar</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Arabia Insurance Co - Qatar</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Doha Takaful</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Qatar Islamic Insurance Company</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Sharq Insurance LLC</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Medgulf Takaful Qatar</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>AL KHALEEJ TAKAFUL INSURANCE</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Orient - SEIB</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>SEIB Insurance & Reinsurance Company</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Doha Insurance Group</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>General Takaful Company - Qatar</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>SOLIDARITY BAHRAIN B.S.C</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Medgulf Takaful B.S.C. (c) BAH</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Takaful International Co. - Bahrain</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Orient Insurance PJSC - Bahrain</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Arabia Insurance Co - Bahrain</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>SGT/ ITHMAAR GROUP BAH</td>
+                            <td>BAH</td>
+                        </tr>
+                    </table>
+
+                    <h4>List of Historical Users per Business Unit</h4>
+                    <table class="styled-table">
+                        <tr>
+                            <th>User</th>
+                            <th>BU</th>
+                        </tr>
+                        <!-- Bahrain Users -->
+                        <tr>
+                            <td>Mustafa Alghasra</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Anwar Alhadhoori</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Hasan Salman</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Zahraa Makki</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Zaid Hussain</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Cayrene Ebrada</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Hawraa Mansoor</td>
+                            <td>BAH</td>
+                        </tr>
+                        <tr>
+                            <td>Layla Redha</td>
+                            <td>BAH</td>
+                        </tr>
+                        <!-- Qatar Users -->
+                        <tr>
+                            <td>Faten El Sharkawy</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Gurpreet Khera</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Jonard.Gutierrez</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Rana Mohsen</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Beenish Ali</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Gurpreet Singh</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Vrishalli Metrani</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Alaa Ali</td>
+                            <td>QAT</td>
+                        </tr>
+                        <tr>
+                            <td>Abdallaha Alzain</td>
+                            <td>QAT</td>
+                        </tr>
+                        <!-- UAE Managers & Supervisor -->
+                        <tr>
+                            <td>Cheryl Amar</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Ednalyn Leones</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Nireus Paulino</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Ryan San Diego New</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Jhon Aniceto</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Badr</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Islam Zakaria</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>Kholoud Helal</td>
+                            <td>UAE.M</td>
+                        </tr>
+                        <tr>
+                            <td>All Other Users</td>
+                            <td>UAE</td>
+                        </tr>
+                    </table>
+                </blockquote>
+            </article>
+        </section>
+
+        <section class="main-section" id="as">
+            <br>
+            <!-- <br> -->
+            <h2>After Sales: Endorsements</h2>
+            <article>
+                <h3>Endorsements</h3>
+                <br>
+            </article>
+        </section>
+
+        <section class="main-section" id="cc">
+            <br><br>
+            <h2>Care Center</h2>
+            <article>
+                <h3>Calculation Logic: Care Center Answered Calls</h3>
+                <p>
+                    The count of answered calls per payer is calculated using percentage estimation of the total answered calls and total inquiries received per payer.
+                    <br><br> The method of estimation is used since not all transactions in TATSH Back Office Inquiry Tracking Search data include the payer name, thus the total count of unidentified transactions are spread among payers.
+                </p>
+
+                <h4>Sample Calculation</h4>
+                <table class="styled-table">
+                    <tr>
+                        <th>Payer Name</th>
+                        <th>
+                            Inquiries Received per Payer, <br> from TATSH Back Office <br> Inquiry Tracking Search data, <br> with Payer Identifier
+                        </th>
+                        <th>
+                            Total Inquiries Received, <br> from TATSH BO ITS data, <br> with Payer Identifier
+                        </th>
+                        <th>Percentage of Total</th>
+                        <th>
+                            Total Answered Calls
+                        </th>
+                        <th>Final Answered Calls per Payer</th>
+                    </tr>
+                    <tr>
+                        <td>Payer A</td>
+                        <td>80</td>
+                        <td>200</td>
+                        <td>40%</td>
+                        <td>300</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>Payer B</td>
+                        <td>50</td>
+                        <td>200</td>
+                        <td>25%</td>
+                        <td>300</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>Payer C</td>
+                        <td>70</td>
+                        <td>200</td>
+                        <td>35%</td>
+                        <td>300</td>
+                        <td>105</td>
+                    </tr>
+                </table>
+
+            </article>
+
+
+            <article>
+                <h3>Calculation Logic: Care Center Answered Calls</h3>
+                <p>
+                    The count of answered calls per payer is calculated using percentage estimation of the total answered calls and total inquiries received per payer.
+                    <br><br> The method of estimation is used since not all transactions in TATSH Back Office Inquiry Tracking Search data include the payer name, thus the total count of unidentified transactions are spread among payers.
+                </p>
+
+                <h4>Sample Calculation</h4>
+                <table class="styled-table">
+                    <tr>
+                        <th>Payer Name</th>
+                        <th>
+                            Inquiries Received per Payer, <br> from TATSH Back Office <br> Inquiry Tracking Search data, <br> with Payer Identifier
+                        </th>
+                        <th>
+                            Total Inquiries Received, <br> from TATSH BO ITS data, <br> with Payer Identifier
+                        </th>
+                        <th>Percentage of Total</th>
+                        <th>
+                            Total Answered Calls
+                        </th>
+                        <th>Final Answered Calls per Payer</th>
+                    </tr>
+                    <tr>
+                        <td>Payer A</td>
+                        <td>80</td>
+                        <td>200</td>
+                        <td>40%</td>
+                        <td>300</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>Payer B</td>
+                        <td>50</td>
+                        <td>200</td>
+                        <td>25%</td>
+                        <td>300</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>Payer C</td>
+                        <td>70</td>
+                        <td>200</td>
+                        <td>35%</td>
+                        <td>300</td>
+                        <td>105</td>
+                    </tr>
+                </table>
+            </article>
+        </section>
+
+        <section class="main-section" id="alteryx">
+            <br>
+            <!-- <br> -->
+            <h2>Running the Reporting App</h2>
+            <article>
+                <h3>Alteryx Application</h3>
+                <br>
+            </article>
+        </section>
+
+        <section class="main-section" id="reporting">
+            <br><br>
+            <h2>Reporting</h2>
+            <article>
+                <h3>Report Submission</h3>
+                <blockquote>
+                    <p>
+                        The Regional Finance Manager is getting a notification whenever the report becomes ready. The file is saved in a Shared Drive and is password protected.
+                    </p>
+
+                </blockquote>
+            </article>
+        <div class="multiple-spaces"></div>
+        </section>
+
+        <div class="footer">
+            &copy; Copyright 2022 Data Intelligence - Operations Support
+        </div>
+    </main>
+</div>
+</body>
+
+</html>

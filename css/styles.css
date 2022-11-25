@@ -1,0 +1,147 @@
+css,
+html,
+body {
+    min-width: 290px;
+    color: #4d4e53;
+    background-color: #ffffff;
+    font-family: 'Segoe UI';
+    line-height: 1.5;
+}
+
+#main-doc {
+    position: absolute;
+    margin-left: 310px;
+    margin-bottom: 110px;
+    padding-left: 20px;
+}
+
+header {
+    color: rgb(0, 142, 127);
+    margin: 26px;
+    font-size: 2.2em;
+}
+
+h1 {
+    font-family: 'Segoe UI';
+    color: rgb(42, 42, 42);
+    margin: 26px;
+    text-align: left;
+    font-size: 1.0em;
+    font-weight: thin;
+}
+
+h2 {
+    text-align: left;
+    color: rgb(0, 142, 127);
+    margin: 0px;
+}
+
+h3 {
+    text-align: left;
+    color: rgb(68, 68, 68);
+    font-size: 2.0em;
+    margin: 0px;
+}
+
+ul li a {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+#navbar {
+    position: fixed;
+    min-width: 290px;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100%;
+    border-right: solid;
+    border-color: rgba(0, 22, 22, 0.4);
+}
+
+#navbar ul {
+    height: 88%;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#navbar li {
+    border-top: 1px solid;
+    list-style: none;
+    position: relative;
+    width: 100%;
+}
+
+a:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+#navbar a {
+    display: block;
+    padding: 10px 30px;
+    color: #4d4e53;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+section article {
+    color: #4d4e53;
+    margin: 15px;
+    font-size: 0.96em;
+}
+
+section li {
+    margin: 15px 0px 0px 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.styled-table {
+    border-collapse: separate;
+    border-spacing: 10px 0.2rem;
+    font-size: 0.95em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+.styled-table tbody {
+    vertical-align: text-top;
+}
+
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+}
+
+.space {
+    margin: 26px;
+}
+
+.multiple-spaces {
+    height: 24em;
+}
+
+#hist {
+    /* visibility: collapse; */
+    display: none;
+}
+
+span {
+    font-family: 'Lucida Console';
+    font-size: 0.85em;
+    background-color: lightgray;
+}
+
+#annex .ul {
+    list-style-type: disc;
+}
+
+.footer {
+    bottom: 0;
+    padding-bottom: 20px;
+}
