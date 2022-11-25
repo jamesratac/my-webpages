@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+	<title>Nextcare Data Intelligence</title>
+	<link rel="stylesheet" href="../css/styles.css">
+</head>
+</body>
+<div class="main-body">
+	<nav id="navbar">
+		<div class="vrn">
+			<a href="../index.html"><b>Home</b></a>
+			<a href="endorsements.html">
+				<sub>Policy Endorsements<br>Documentation Version 1.0</sub>
+			</a>
+		</div>
+		<header>
+			Documentation
+		</header>
+		<ul>
+			<li><a class="nav-link" href="#overview">Overview</a></li>
+			<li><a class="nav-link" href="#source">Source Data</a></li>
+			<li><a class="nav-link" href="#steps">Reporting Procedure</a></li>
+		</ul>
+	</nav>
+
+	<main id="main-doc">
+		<section class="main-section" id="overview">
+			<div class="space"></div>
+			<div class="space"></div>
+			<h2>Overview</h2>
+			<article>
+				<h3>Approval TAT per Member Reports</h3>
+				<p>
+					Qatar Business Unit's Approval TAT per Member Report shows the monthly total count of in-patient and out-patient approvals, 
+					the same as the approval count and turnaround time per member.
+					<br><br>
+					As of November 2022, the report is shared for Doha Insurance Group (DIG) and one of its master contract, 
+					Nasser Bin Khaled Al Thani & Sons Holding Co. WLL.
+					<br><br>
+					The deadline of submission of these reports are every 15th day of each month. 
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="source">
+			<div class="space"></div>
+			<h2>Source Data</h2>
+			<article>
+				<h3>Sources of Data</h3>
+				<p>
+					The sources of data used in these reports are as follows:
+					<ul>
+						<li>
+							<b>Manual Pre-Certifications</b>: QlikSense > OPS > 
+							<a href="https://bi.tatsh.com/sense/app/8b27c303-d900-4f97-8201-918b595a21c1" target="_blank">Pre-Certs Dashboard</a>  
+						</li>
+						<li>
+							<b>Automated Pre-Certifications</b>: QlikSense > OPS > 
+							<a href="https://bi.tatsh.com/sense/app/eaceaacf-b220-465c-81be-81b118e9c3eb/overview" target="_blank">Automation Dashboard</a> 
+						</li>
+						<li>
+							<b>Member Card Numbers</b>: <a href="https://backoffice.tatsh.com/RDWeb/Pages/en-US/default.aspx" target="_blank">RemoteApp and Desktop Connection</a> > 
+								TATSH Back Office > Pre-Certification Logs
+						</li>
+					</ul>
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="design">
+			<div class="space"></div>
+			<h2>Steps</h2>
+			<article>
+				<h3>Reporting Procedures</h3>
+				<br>
+				<ol>
+					<li>
+						<b>Download and Save the Required Data</b>
+						<ul>
+							<li>Download Manual Pre-Certifications from first month of the year until the last completed month through Qlik: 
+								<br>Bookmark = 
+								<a href="https://bi.tatsh.com/sense/app/8b27c303-d900-4f97-8201-918b595a21c1/sheet/ac6b67b8-1428-421f-8d74-63ac6a876048/state/analysis/bookmark/0af33782-7a1a-4ef8-8d5d-08a2c21ccf82" 
+								target="_blank">DIG-NBKv2</a>
+								<br>and then save to: \\Ncu-tqa-019\data\james\__recurring-reports\doha-insurance-per-mbr-pc-tat\data\01_manual
+							</li>
+							<li>Download Automated Pre-Certs for last month through Qlik: 
+								<br>Bookmark = 
+								<a href="https://bi.tatsh.com/sense/app/eaceaacf-b220-465c-81be-81b118e9c3eb/sheet/1c96706d-2fa8-4975-a4d6-f61fbf52a4f2/state/analysis/bookmark/22355355-eeea-4630-9476-26825639eae6" 
+								target="_blank">DIG-NBKv2</a>
+								
+								<br>and then save to: \\Ncu-tqa-019\data\james\__recurring-reports\doha-insurance-per-mbr-pc-tat\data\02_auto
+							</li>
+							<li>
+								Download two datasets of PC Logs from TATSH Back Office:
+								<ul>
+									<li>Extract completed PC logs of previous month. 
+										<br>
+										Example: If today is the 14th of November, and then download last month's, October 1st to 31st, PC logs.
+										<br>
+										Save the extracted data to <a href="\\172.29.12.142\M Drive\jamesratac\__qatar-permbr-report\DOHA INSURANCE GROUP" target="_blank">
+											Doha Insurance Group's PC Logs files</a>	
+										<br>
+											File path: \\172.29.12.142\M Drive\jamesratac\__qatar-permbr-report\DOHA INSURANCE GROUP
+									</li>
+									<li>
+										Extract PC logs for the current month. 
+										<br>	
+										The Decision Date range is from the first day until the date PC logs is generated, 
+										<br>
+										Example: If today is the 14th of November, and then Decision Date range is = From: 01-11-2022 To: 14-11-2022. 
+										<br>
+										Save the data the following location: \\172.29.12.142\M Drive\jamesratac\__qatar-permbr-report\DOHA INSURANCE GROUP
+										<br> 
+										and then move the last month incomplete PC Logs to the Old Logs or archive folder. 
+									</li>
+								</ul> 
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<b>Open and Run the Alteryx Workflow</b>
+						<ul>
+							<li>
+								Open the workflow with filename: wf_pc-tat-per-mbr-v2.yxmd
+								<br>
+								File path: \\Ncu-tqa-019\data\james\__recurring-reports\doha-insurance-per-mbr-pc-tat
+							</li>
+							<li>
+								Search for the input tool with BI EXTRACT MANUAL label, and then change the file to the latest Manual Pre-Certs saved under:
+								<br>
+								\\Ncu-tqa-019\data\james\__recurring-reports\doha-insurance-per-mbr-pc-tat\data\01_manual
+								<br>
+								There are changes required for the BI EXTRACT AUTO input tool. 
+							</li>
+							<li>
+								Look for the filter tools with yellow box background, and then update the Year-Month input. 
+								<br>
+								If report is prepared on the month of November 2022, PC count is for January to October 2022 report only.
+								<br>
+								November 2022 then should be excluded, thus filter out 2022.11 in the workflow.  
+							</li>
+							<li>
+								Run the workflow.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<b>Transfer the Alteryx output to the Approval TAT per Member report</b>
+						<ul>
+							<li>
+								Alteryx output file are saved under:
+								<br>
+								\\Ncu-tqa-019\data\james\__recurring-reports\doha-insurance-per-mbr-pc-tat\alteryx-output
+								<br>
+								Open the output file.
+							</li>
+							<li>
+								For the template of the report, go to:
+								<br>
+								\\172.29.12.142\M Drive\1 QATAR\NEXTCARE\Nada Omer\JAMES\QATAR PAYER'S PER MEMBER REPORTS\2022\DOHA INSURANCE GROUP
+								<br>
+								Copy and paste the latest report, and then rename as per the new months' scope, e.g. <b>DOHA INSURANCE - PRE-CERT TAT PER MEMBER REPORT - <i>2022.01.10</i></b>
+								<br>
+								Open the newly copied/created file. The file password is: <b>nc2022qatar</b>.
+							</li>
+							<li>
+								Once the Approval TAT per Member report is open, update the <b>Date as of</b> field as per the reporting month.
+								Also <b>add one row</b> at the bottom of the table for the additional Month Year. 
+							</li>
+							<li>
+								From the Alteryx output file, OUTPUT_PC_TAT.xlsx, in worksheet 01.0, copy the data from <i>column G: 4_IP_WITHIN_24_HOURS</i> to <i>column H: 5_IP_MORE_THAN_24_HOURS</i>.
+								<br>
+								Paste the values to PC_TAT.PER_MONTH > <b>In-Patient Pre-Certification</b> table, below the totals of <i>Within 24 Hours column (column C)</i>.
+							</li>
+							<li>
+								From the Alteryx output file, OUTPUT_PC_TAT.xlsx, in worksheet 01.0, copy the data of <i>column D: 1_OP_WITHIN_15_MINUTES</i>; 
+								<i>column E: 2_OP_WITHIN_30_MINUTES</i>; and <i>column F: 3_OP_MORE_THAN_30_MINUTES</i>.
+								<br>
+								Paste the values to PC_TAT.PER_MONTH > <b>Out-Patient Pre-Certification</b> table, below the totals of <i>Within 15 Minutes column (column J)</i>.
+							</li>
+							<li>
+								From the Alteryx output file, OUTPUT_PC_TAT.xlsx, in worksheet 04.1, copy the data from the Master Contract Name column up to the last column of the table: 5_IP_MORE_THAN_24_HOURS.
+								<br>
+								Paste the values to .PER_MEMBER > <b>In-Patient Pre-Certification</b> table, below Master Contract and Totals row (<i>cell A6</i>).
+								<br>
+								Go to the last row of the In-Patient table, if there are added rows, and then drag <i>columns E & F (Total and Within SLA, Percent of Total)</i>
+								until the end of the table to match all of rows of the table.
+							</li>
+							<li>
+								From the Alteryx output file, OUTPUT_PC_TAT.xlsx, in worksheet 04.2, copy the data from the Master Contract Name column up to the last column of the table: 3_OP_MORE_THAN_30_MINUTES.
+								<br>
+								Paste the values to .PER_MEMBER > <b>Out-Patient Pre-Certification</b> table, below Master Contract and Totals row (<i>cell H6</i>).
+								Go to the last row of the Out-Patient table, if there are added rows, and then drag <i>columns E & F (Total and Within SLA, Percent of Total)</i>
+								until the end of the table to match all of rows of the table.
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<b>Validate the figures</b>
+						<ul>
+							<li>Compare the <i>Total</i> and <i>Within SLA Percent of Total</i> numbers of both IP and OP tables of PC_TAT <i>.PER_MONTH</i> and <i>.PER_MEMBER</i> worksheets.</li>
+							<li>If there is a mismatch, double check the numbers and find where the discrepancy is coming from.</li>
+							<li>Once all figures matched, prepare the same report for Nasser Bin Khaled, a policy under Doha Insurance Group.</li>
+						</ul>
+					</li>
+					
+					<li>
+						<b>Nasser Bin Khaled Approval TAT per Member</b>
+						<ul>
+							<br>
+							<i>
+								Basically, the preparation and reporting procedure should be the same with DIG
+							</i>
+							<li>
+								Open Alteryx workflow: \\Ncu-tqa-019\data\james\__recurring-reports\dig-nasser-bin-khaled
+								<br>
+								Filename: <b>wf_nbk.yxmd</b>
+							</li>
+							<li>
+								Modify the filter tool with the Month Year that need to be excluded.
+							</li>
+							<li>
+								Run the Alteryx workflow.
+							</li>
+							<li>
+								Open the output file: \\Ncu-tqa-019\data\james\__recurring-reports\dig-nasser-bin-khaled\OUTPUT.
+							</li>
+							<li>
+								Copy/create a new month's report for Nasser Bin Khaled Approval TAT per Member
+								<br>
+								File location: \\172.29.12.142\M Drive\1 QATAR\NEXTCARE\Nada Omer\JAMES\QATAR PAYER'S PER MEMBER REPORTS\2022\DOHA INSURANCE GROUP\NBKAT
+							</li>
+							<li>
+								Transfer the data from the output file to Approval TAT per Member report (same steps as above procedure for DIG, step numbers 3 and 4).
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<b>Email/notify Nextare Qatar</b>
+						<ul>
+							<li>
+								Send a notification email to Nextcare Qatar that the reports are now ready.
+								<br>
+								<a href="./msg/RE Qatar  Monthly Reports  Approvals TAT.msg" target="_blank">Click here</a> to download and view a sample email to Nextcare Qatar.
+							</li>
+						</ul>
+					</li>
+				</ol>
+
+			</article>
+		</section>
+		
+		<div class="multiple-spaces"></div>
+		<div class="footer">
+			Copyright &copy; 2022 Data Intelligence - Operations Support
+		</div>		
+
+	</main>
+</div>
+</body>
+
+</html>

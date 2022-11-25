@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+	<title>Nextcare Data Intelligence</title>
+	<link rel="stylesheet" href="../css/styles.css">
+</head>
+</body>
+<div class="main-body">
+	<nav id="navbar">
+		<div class="vrn">
+			<a href="../index.html"><b>Home</b></a>
+			<a href="endorsements.html">
+				<sub>TPA Claims Settlement<br>Documentation Version 1.0</sub>
+			</a>
+		</div>
+		<header>
+			Documentation
+		</header>
+		<ul>
+			<li><a class="nav-link" href="#overview">Overview</a></li>
+			<li><a class="nav-link" href="#source">Source Data</a></li>
+			<li><a class="nav-link" href="#steps">Steps</a></li>
+		</ul>
+	</nav>
+
+	<main id="main-doc">
+		<section class="main-section" id="overview">
+			<div class="space"></div>
+			<div class="space"></div>
+			<h2>Overview</h2>
+			<article>
+				<h3>Overview</h3>
+				<p>
+					<ul>
+						<li>Deadline of Submission: Seven working days every after last day of the month</li>
+						<li>Scope: Previous Reporting Month, Claims under HAAD Licensing Authority - by PO Validation Date</li>
+					</ul>
+					<b>Important Notes:</b>
+					<ul>
+						<li>This is a regulatory requirement so make sure not to miss. 
+							Nextcare Compliance receives an email notification from Department of Health once this report has not been submitted after the deadline.</li>
+						<li>Make sure not to locked out the account by entering incorrect username/password. 
+							The credentials are linked to other Nextcare system, such as Greenrain. </li>
+					</ul>
+				</p>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="source">
+			<div class="space"></div>
+			<h2>Source Data</h2>
+			<article>
+				<h3>Source Data</h3>
+			</article>
+		</section>
+
+		<br>
+		<section class="main-section" id="steps">
+			<div class="space"></div>
+			<h2>Steps</h2>
+			<article>
+				<h3>Steps</h3>
+				<p>
+					<ol>
+					<li>Download and save the data</li> 
+						From: Qlik BI > Nextcare Claims Dashboard > Bookmarks = HAAD Processed & Ready for Settlement Claims 
+						To: \\ncu-tqa-019\DATA\james\__recurring-reports\haad-data-upload\HAAD UPLOAD YEAR 2022
+							Note: Create a new folder for the month, or if it's a new year, go one folder up (parent folder) and create a new HAAD UPLOAD YEAR 20XX.
+					<li>Filter the Provider PO Validation Month-Year. This is the only filter that you should be changing. Default filters are: </li>
+						<ul>
+							<li>Licensing Authority = HAAD</li>
+							<li>ASOAP Type = Direct</li>
+							<li>Batch Reception Year <> Null</li>
+							<li>PO Delivert Date <> Null</li>
+						</ul>
+					<li>Go to Department of Health homepage: https://bpmweb.doh.gov.ae/UserManagement/MainPage.html</li>
+					<li>Login using Nextcare credentials</li>
+						<ul>
+							<li>Username = Nextcare</li>
+							<li>Password = to be provided by <a href="mailto:Helen.Kay@nextcarehealth.com">Helen Kay</a><br>
+						</ul>
+					<li>After logging in, go to: e-Insurance > TPA Forms</li>
+						If in case Finance team already uploaded their data, you will receive an error message = "Data already exists for this month!!!". If you encounter this error, go to (a);
+						Else go to (b).
+							a. Add the payers one-by-one by selecting the name of the payer in the dropdown menu and then clicking 'Add Insurer'.
+							b. Go to e-Insurance > TPA Forms, and then select the latest report saved as draft.
+					<li>For each payer, click the gear icon to add the figures in the form.</li>
+					<li>Once all data have been added, validate the figures by making sure that the totals from Qlik Sense and in the DOH Portal that you have just added are matching. </li>
+					<li>Once confirmed that the totals matched, go to the bottom of the page and click Submit. 
+					Note: Never submit the report without data in Table 3 to 7, which are being completed by Finance department. </li>
+					</ol>
+				</p>
+			</article>
+		</section>
+		
+	</main>
+</div>
+</body>
+
+</html>
